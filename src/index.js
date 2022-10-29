@@ -4,7 +4,7 @@ import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <h1>hello from my app</h1>
+    <h1>games heaven</h1>
   </React.StrictMode>
 );
 
