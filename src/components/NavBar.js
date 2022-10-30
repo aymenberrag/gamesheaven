@@ -1,11 +1,13 @@
 import NavSearchForm from "../components/NavSearchForm";
 
 
-
-const NavBar=()=>{
+const NavBar=({setIsSideBar,isSideBar})=>{
     return(
         <nav className="nav-bar space-between">
-            <h1 className="logo">games heaven</h1>
+            <div className="logo center">
+                <i className="bi bi-list side-bar-toggle" onClick={()=>setIsSideBar(!isSideBar)}></i>
+                <h1>games heaven</h1>
+            </div>
             <NavSearchForm />
         </nav>
     )
