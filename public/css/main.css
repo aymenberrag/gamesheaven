@@ -17,7 +17,7 @@
     --white-color: #fff;
     --font-color: #f1f1f1;
     --light-font-color: grey;
-    --shadow-color: rgb(43, 43, 43);
+    --shadow-color: rgb(27, 27, 27);
 }
 
 a {
@@ -65,17 +65,19 @@ styling the navbar
 .nav-bar{
     grid-column: 1 / span 2;
     background-color: var(--bg-color);
-    padding: 0px 20px;
+    padding: 1px 20px;
     flex-wrap: wrap;
+    box-shadow: 0px 0px 12px 2px var(--shadow-color);
 }
 .logo{
     color: var(--font-color);
     text-transform: capitalize;
 }
-.logo>.side-bar-toggle{
-    font-size: 24px;
+.side-bar-toggle{
+    font-size: 28px;
     padding:0px 5px 0px 0px;
     cursor: pointer;
+    display: none;
 }
 .nav-search{
     width: 100%;
@@ -150,6 +152,17 @@ styling the navbar
     margin-right: 5px;
     border-radius: 3px;
 }
+.nav-search>.nav-search-result>.search-result-list>.result-item>.released{
+    color: var(--light-font-color);
+}
+.nav-search>.nav-search-result>.search-result-list>.result-item>.platforms{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.nav-search>.nav-search-result>.search-result-list>.result-item>.platforms>i{
+    color: var(--light-font-color);
+}
 /* ************************************************* 
 styling the sidebar
 
@@ -157,7 +170,7 @@ styling the sidebar
 .side-bar{
     min-width: 250px;
     border-right: 1px solid var(--bg-color);
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
 }
 .side-bar>.side-bar-list{
     list-style: none;
@@ -219,16 +232,48 @@ meduim devices 992px
         grid-template-columns: 1fr;
     }
     /* ************************************************* 
+    styling the navbar
+    
+    ****************************************************/
+    .nav-search {
+        max-width: unset;
+    }
+    .side-bar-toggle {
+        display: flex;
+        color: var(--font-color);
+    }
+    /* ************************************************* 
     styling the sidebar
     
     ****************************************************/
-        .side-bar {
-            position: absolute;
-            left: -250px;
-            top: 50px;
-            transition: left 0.2s linear;
-        }
-        .side-bar[active="active"]{
-            left: 0px;
-        }
+    .side-bar {
+        border: none;
+        position: absolute;
+        left: -250px;
+        top: 78px;
+        height: calc(100% - 78px);
+        transition: left 0.1s linear;
+    }
+    .side-bar[active="active"]{
+        left: 0px;
+    }
+}
+/* ************************************************* 
+small devices 672px
+
+****************************************************/
+@media screen and (max-width:672px) {
+
+    /* ************************************************* 
+    styling the navbar
+    
+    ****************************************************/
+    /* ************************************************* 
+    styling the sidebar
+    
+    ****************************************************/
+    .side-bar {
+        width: 100%;
+        left: -100%;
+    }
 }

@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const NavSearchForm=()=>{
+const NavSearchForm=(props)=>{
     const [isEmpty,setIsEmpty]=useState(false)
     const [showResult,setShowResult]=useState(false)
     const [search,setSearch]=useState("")
@@ -36,8 +36,12 @@ const NavSearchForm=()=>{
                         <a href="/" className="result-item" key={item.id}>
                             <img className="result-img" src={item.background_image} alt={item.name} />
                             <h3 className="result-name">{item.name}</h3>
-                            <i className="bi bi-star-fill result-rating"><span>{item.rating || "0.00"}</span></i>
-                            <span className="result-metacritic" metacritic={item.metacritic || "00"}>metacritic</span>
+                            <div className="platforms">
+                            {item.parent_platforms.map(platform=>(
+                                <i className={props.platformsIcons[platform.platform.name.toLowerCase()]} key={platform.platform.id}></i>
+                            ))}
+                            </div>
+                            <div className="released center">{item.released}</div>
                         </a>
                         )})}
                     </div>

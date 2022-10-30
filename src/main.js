@@ -6,10 +6,17 @@ import { useState } from "react"
 
 const Main=()=>{
     const [isSideBar,setIsSideBar]=useState(false)
+    const platformsIcons=
+        {"pc":"fa-solid fa-desktop",
+        "playstation":"fa-brands fa-playstation",
+        "xbox":"fa-brands fa-xbox",
+        "ios":"fa-brands fa-app-store-ios",
+        "android":"fa-brands fa-android",
+        "nintendo":"fa-solid fa-gamepad"}
     return(
         <Router>
         <main className="container">
-            <NavBar setIsSideBar={setIsSideBar} isSideBar={isSideBar}></NavBar>
+            <NavBar setIsSideBar={setIsSideBar} isSideBar={isSideBar} platformsIcons={platformsIcons}></NavBar>
             <SideBar isSideBar={isSideBar}></SideBar>
             <div className="content center">
                 <Routes>
