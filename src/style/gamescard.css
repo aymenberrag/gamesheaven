@@ -1,0 +1,41 @@
+.game-card{
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 300px;
+    background-color: var(--bg-color);
+    box-shadow: 0px 0px 12px 2px var(--shadow-color);
+}
+.game-card>.game-img{
+    width: 100%;
+    height: 200px;
+}
+.game-card>.game-data{
+    width: 100%;
+    padding: 10px;
+    color: var(--font-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5px;
+    row-gap: 10px;
+}
+.game-card>.game-data>.game-name{
+    text-transform: capitalize;
+}
+.game-card>.game-data>.game-rating{
+    font-style: normal;
+    color: yellow;
+}
+.game-card>.game-data>.game-rating>span {
+    padding: 5px;
+    color: var(--font-color);
+}
+.game-card>.game-data>.released{
+    grid-column: 1 /span 2;
+}
+.game-card>.game-data>.genre{
+    padding: 5px;
+    color: var(--font-color);
+    background-color: var(--main-color);
+    height: 20px;
+    border-radius: 10px;
+}

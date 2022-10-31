@@ -2,6 +2,7 @@ import NavBar from "./components/NavBar"
 import SideBar from "./components/SideBar"
 import { BrowserRouter as Router,Route,Routes } from "react-router-dom"
 import Home from "./pages/Home"
+import Templet from "./pages/Templet"
 import { useState } from "react"
 
 const Main=()=>{
@@ -21,7 +22,7 @@ const Main=()=>{
             <div className="content center">
                 <Routes>
                     <Route path="/" exact element={<Home />}></Route>
-                    <Route path="/games" exact ></Route>
+                    <Route path="/games" exact element={<Templet />}></Route>
                     <Route path="/platforms" exact ></Route>
                     <Route path="/genres" exact ></Route>
                     <Route path="/publishers" exact ></Route>

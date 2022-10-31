@@ -31,7 +31,7 @@ const NavSearchForm=(props)=>{
         })
 }
     return(
-        <form className="nav-search center">
+        <div className="nav-search center">
             <input 
             className="nav-search-input" 
             value={search}
@@ -40,7 +40,7 @@ const NavSearchForm=(props)=>{
             type="text" 
             placeholder="search..." 
             autoComplete="off"/>
-            <button className="search-btn"><i className="bi bi-search"></i></button>
+            <Link to={`/search`} className="search-btn center"><i className="bi bi-search"></i></Link>
             {showResult && (
             <div className="nav-search-result center">
                 {isLoading?<div className="loading">loading...</div>
@@ -65,7 +65,7 @@ const NavSearchForm=(props)=>{
             </div>
             )}
             
-        </form>
+        </div>
     )
 }
 
