@@ -5,7 +5,7 @@ import "../style/gamescard.css"
 const GamesCard=({game})=>{
     const {platformsIcons}=useContext(dataContext)
     return(
-        <Link to={`${game.id}`} className="game-card center">
+        <Link to={`${game.id}`} className="game-card center" metacritic={game.metacritic || "--"}>
             <img className="game-img" src={game.background_image} alt={game.name}></img>
             <div className="game-data">
                 <h3 className="game-name">{game.name}</h3>
@@ -18,7 +18,7 @@ const GamesCard=({game})=>{
                 }
                 <div className="platforms">
                 {game.parent_platforms.map(platform=>(
-                    <i className={platformsIcons[platform.platform.name.toLowerCase()]} key={platform.platform.id}></i>
+                    platformsIcons[platform.platform.name.toLowerCase()] && <i className={platformsIcons[platform.platform.name.toLowerCase()]} key={platform.platform.id}></i>
                 ))}
                 </div>
             </div>

@@ -1,29 +1,32 @@
-import { useState } from "react"
-import { useParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
+import Card from "../components/Card"
 import GamesCard from "../components/GamesCard"
+import Loading from "../components/loading"
 import useFetch from "../hooks/useFetch"
 import "../style/templet.css"
 
 const Templet=()=>{
-    const {page}=useParams()
-    const [pageIndex,setPageIndex]=useState(1)
-    const {isEmpty,isLoading,err,data}=useFetch(page,pageIndex)
+    const [searchParams,setSearchParams]=useSearchParams()
+    const {isEmpty,isLoading,err,data,page}=useFetch(searchParams)
+    
     return(
         <div className="templet center">
             {
-            isLoading?<div className="loading">loading...</div>
+            isLoading?<Loading />
             :err?<div className="error center"><i className="bi bi-emoji-frown"></i>{err}</div>
             :isEmpty?<div className="no-result center"><i className="bi bi-search"></i>no result</div>:(
             <>
                 <div className="cardes-grid">
                     {data.results.map(card=>(
-                        <GamesCard key={card.id} game={card}></GamesCard>
+                        page==="games"?
+                        <GamesCard key={card.id} game={card}></GamesCard>:
+                        <Card key={card.id} data={card} page={page}></Card>
                     ))}
                 </div>
                 <div className="next-page">
-                    {data.previous && <i className="bi bi-caret-left-fill" onClick={()=>setPageIndex(pageIndex-1)}></i>}
-                    <div>{`page ${pageIndex} / ${Math.ceil(data.count / 20)}`}</div>
-                    {data.next && <i className="bi bi-caret-right-fill" onClick={()=>setPageIndex(pageIndex+1)}></i>}
+                    {data.previous && <i className="bi bi-caret-left-fill" onClick={()=>setSearchParams({page:searchParams.get("page")-1})}></i>}
+                    <div>{`page ${searchParams.get("page") || 1} / ${Math.ceil(data.count / 20)}`}</div>
+                    {data.next && <i className="bi bi-caret-right-fill" onClick={()=>setSearchParams({page:parseInt(searchParams.get("page"))+1 || 2})}></i>}
                 </div>
             </>
             )

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import { dataContext } from "../main"
+import Loading from "./loading"
 
 const NavSearchForm=()=>{
     const {platformsIcons}=useContext(dataContext)
@@ -45,7 +46,7 @@ const NavSearchForm=()=>{
             <Link to={`/search`} className="search-btn center"><i className="bi bi-search"></i></Link>
             {showResult && (
             <div className="nav-search-result center">
-                {isLoading?<div className="loading">loading...</div>
+                {isLoading?<Loading />
                 :err?<div className="error center"><i className="bi bi-emoji-frown"></i>{err}</div>
                 :isEmpty?<div className="no-result center"><i className="bi bi-search"></i>no result</div>:(
                     <div className="search-result-list">

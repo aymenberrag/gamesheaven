@@ -80,7 +80,37 @@ body {
     align-items: center;
     padding: 20px;
     font-weight: bold;
-    color: var(--bg-color);
+    color: var(--font-color);
+}
+.loading>.loading-animation{
+    position: relative;
+    height: 70px;
+}
+.loading>.loading-animation>i{
+    font-size: 35px;
+}
+.loading>.loading-animation>.up{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    animation: rotate 3s linear infinite ;
+}
+.loading>.loading-animation>.down {
+    position: absolute;
+    top: 17px;
+    left: 28px;
+    animation: rotate 3s linear infinite reverse;
+}
+.loading>.loading-animation>div{
+    text-transform: capitalize;
+    position: absolute;
+    left: 0px;
+    top: 60px;
+}
+@keyframes rotate {
+    to{
+        transform: rotate(360deg);
+    }  
 }
 /* ************************************************* 
 styling the navbar
@@ -132,6 +162,7 @@ styling the navbar
     width: 100%;
     top: 100%;
     background-color: var(--white-color);
+    z-index: 25;
 }
 .nav-search>.nav-search-result>.search-result-list{
     width: 100%;
@@ -273,6 +304,7 @@ meduim devices 992px
     .side-bar {
         border: none;
         position: absolute;
+        z-index: 4;
         left: -250px;
         top: 78px;
         height: calc(100% - 78px);
