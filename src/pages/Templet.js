@@ -1,31 +1,13 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { useParams } from "react-router-dom"
 import GamesCard from "../components/GamesCard"
+import useFetch from "../hooks/useFetch"
 import "../style/templet.css"
 
 const Templet=()=>{
-    const [isEmpty,setIsEmpty]=useState(false)
-    const [isLoading,setIsLoading]=useState(true)
-    const [err,setErr]=useState(null)
-    const [data,setData]=useState(null)
-    useEffect((e)=>{
-        fetch(`https://api.rawg.io/api/games?parent_platforms=1,2,3,4,8,7&key=fd7cfdf1daa045669aae0980fa558939`)
-        .then(res=>{
-            if(res.ok){
-                return res.json()
-            }else{
-                throw Error
-            }
-        })
-        .then(data=>{
-            setData(data)
-            setIsEmpty(!Boolean(data.results.length))
-            setIsLoading(false)
-            setErr(null)
-        })
-        .catch(err=>{
-            setIsLoading(false)
-            setErr(err.message)
-        })},[])
+    const {page}=useParams()
+    const [pageIndex,setPageIndex]=useState(1)
+    const {isEmpty,isLoading,err,data}=useFetch(page,pageIndex)
     return(
         <div className="templet center">
             {
@@ -38,7 +20,11 @@ const Templet=()=>{
                         <GamesCard key={card.id} game={card}></GamesCard>
                     ))}
                 </div>
-                <div className="next-page">next</div>
+                <div className="next-page">
+                    {data.previous && <i className="bi bi-caret-left-fill" onClick={()=>setPageIndex(pageIndex-1)}></i>}
+                    <div>{`page ${pageIndex} / ${Math.ceil(data.count / 20)}`}</div>
+                    {data.next && <i className="bi bi-caret-right-fill" onClick={()=>setPageIndex(pageIndex+1)}></i>}
+                </div>
             </>
             )
             }

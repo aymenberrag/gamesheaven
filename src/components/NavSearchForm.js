@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+import { dataContext } from "../main"
 
-const NavSearchForm=(props)=>{
+const NavSearchForm=()=>{
+    const {platformsIcons}=useContext(dataContext)
     const [isEmpty,setIsEmpty]=useState(false)
     const [isLoading,setIsLoading]=useState(false)
     const [err,setErr]=useState(null)
@@ -54,7 +56,7 @@ const NavSearchForm=(props)=>{
                             <h3 className="result-name">{item.name}</h3>
                             <div className="platforms">
                             {item.parent_platforms.map(platform=>(
-                                <i className={props.platformsIcons[platform.platform.name.toLowerCase()]} key={platform.platform.id}></i>
+                                <i className={platformsIcons[platform.platform.name.toLowerCase()]} key={platform.platform.id}></i>
                             ))}
                             </div>
                             <div className="released center">{item.released}</div>

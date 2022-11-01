@@ -3,7 +3,9 @@ import SideBar from "./components/SideBar"
 import { BrowserRouter as Router,Route,Routes } from "react-router-dom"
 import Home from "./pages/Home"
 import Templet from "./pages/Templet"
-import { useState } from "react"
+import React, { useState } from "react"
+
+export const dataContext=React.createContext()
 
 const Main=()=>{
     const [isSideBar,setIsSideBar]=useState(false)
@@ -15,23 +17,22 @@ const Main=()=>{
         "android":"fa-brands fa-android",
         "nintendo":"fa-solid fa-gamepad"}
     return(
-        <Router>
-        <main className="container">
-            <NavBar setIsSideBar={setIsSideBar} isSideBar={isSideBar} platformsIcons={platformsIcons}></NavBar>
-            <SideBar isSideBar={isSideBar}></SideBar>
-            <div className="content center">
-                <Routes>
-                    <Route path="/" exact element={<Home />}></Route>
-                    <Route path="/games" exact element={<Templet />}></Route>
-                    <Route path="/platforms" exact ></Route>
-                    <Route path="/genres" exact ></Route>
-                    <Route path="/publishers" exact ></Route>
-                    <Route path="/developers" exact ></Route>
-                    <Route path="/stores" exact ></Route>
-                </Routes>
-            </div>
-        </main>
-        </Router>
+        <dataContext.Provider value={{platformsIcons,isSideBar,setIsSideBar}}>
+            <Router>
+            <main className="container">
+                <NavBar ></NavBar>
+                <SideBar ></SideBar>
+                <div className="content center">
+                    <Routes>
+                        <Route path="/">
+                            <Route index element={<Home />}></Route>
+                            <Route path=":page" element={<Templet />}></Route>    
+                        </Route>
+                    </Routes>
+                </div>
+            </main>
+            </Router>
+        </dataContext.Provider>
     )
 }
 

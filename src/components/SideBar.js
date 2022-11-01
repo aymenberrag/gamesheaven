@@ -1,8 +1,10 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useContext} from "react"
+import { Link, useParams } from "react-router-dom"
+import { dataContext } from "../main"
 
-const SideBar=(props)=>{
-    const [activeId,setActiveId]=useState(0)
+const SideBar=()=>{
+    const {isSideBar}=useContext(dataContext)
+    const {page :pageName}=useParams()
     const pages=[
         {id:0,name:"home",link:"/",icon:"fa-solid fa-house"},
         {id:1,name:"games",link:"/games",icon:"fa-solid fa-gamepad",},
@@ -13,11 +15,11 @@ const SideBar=(props)=>{
         {id:6,name:"stores",link:"/stores",icon:"fa-solid fa-store",}
     ]
     return(
-        <aside className="side-bar" active={props.isSideBar?"active":""}>
+        <aside className="side-bar" active={isSideBar?"active":""}>
             <ul className="side-bar-list center">
                 {pages.map(page=>(
-                <li className="side-bar-item" key={page.id} onClick={()=>setActiveId(page.id)}>
-                    <Link className="side-bar-link" to={page.link} active={page.id===activeId?"active":""}><i className={page.icon}></i>{page.name}</Link>
+                <li className="side-bar-item" key={page.id}>
+                    <Link className="side-bar-link" to={page.link} active={page.name===pageName?"active":""}><i className={page.icon}></i>{page.name}</Link>
                 </li>
                 ))}
             </ul>

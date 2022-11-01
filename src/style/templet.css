@@ -4,7 +4,7 @@
     overflow: auto;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 20px 0px;
+    padding: 20px 0px 0px;
 }
 .templet::-webkit-scrollbar{
     display: none;
@@ -17,4 +17,20 @@
     column-gap: 20px;
     justify-items: center;
     align-items: stretch;
+}
+.templet>.next-page{
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    column-gap: 10px;
+    padding: 20px;
+    align-items: center;
+    color: var(--font-color);
+}
+.templet>.next-page>i{
+    background-color: var(--accent-color);
+    font-size: 18px;
+    padding: 5px;
+    color: var(--font-color);
+    border: none;
+    cursor: pointer;
 }

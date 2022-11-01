@@ -10,11 +10,13 @@
     height: 200px;
 }
 .game-card>.game-data{
+    height: 100%;
     width: 100%;
     padding: 10px;
     color: var(--font-color);
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-content: space-between ;
     column-gap: 5px;
     row-gap: 10px;
 }
@@ -36,6 +38,13 @@
     padding: 5px;
     color: var(--font-color);
     background-color: var(--main-color);
-    height: 20px;
+    min-height: 20px;
     border-radius: 10px;
+}
+.game-card>.game-data>.platforms{
+    grid-column: 1 / span 2;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 24px;
 }
