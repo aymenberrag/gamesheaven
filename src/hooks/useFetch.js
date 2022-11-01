@@ -14,6 +14,7 @@ const useFetch=(params=null)=>{
     }
     useEffect((e)=>{
         setIsLoading(true)
+        setData(null)
         fetch(`https://api.rawg.io/api/${page}?key=${"fd7cfdf1daa045669aae0980fa558939"}${q}`)
         .then(res=>{
             if(res.ok){
