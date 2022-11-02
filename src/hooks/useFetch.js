@@ -1,8 +1,10 @@
 import { useState,useEffect } from "react"
-const useFetch=(page,params=null)=>{
+import { useParams} from "react-router-dom"
+const useFetch=(params=null)=>{
     const [isLoading,setIsLoading]=useState(true)
     const [err,setErr]=useState(null)
     const [data,setData]=useState(null)
+    const {page}=useParams()
     let q=""
     if(params){
         for(let param of params.keys()){
@@ -11,6 +13,7 @@ const useFetch=(page,params=null)=>{
     }
     useEffect(()=>{
         setIsLoading(true)
+        
         fetch(`https://api.rawg.io/api/${page}?key=${"fd7cfdf1daa045669aae0980fa558939"}${q}`)
         .then(res=>{
             if(res.ok){
