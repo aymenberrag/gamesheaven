@@ -16,8 +16,6 @@ const Main=()=>{
         "ios":"fa-brands fa-app-store-ios",
         "android":"fa-brands fa-android",
         "nintendo":"fa-solid fa-gamepad"}
-    const key=process.env.API_KEY
-    console.log(key)
     return(
         <dataContext.Provider value={{platformsIcons,isSideBar,setIsSideBar}}>
             <Router>
