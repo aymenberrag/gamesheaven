@@ -1,11 +1,9 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
-import { dataContext } from "../main"
 import Loading from "./loading"
+import NavSearchResult from "./NavSearchResult"
 
 const NavSearchForm=()=>{
-    const {platformsIcons}=useContext(dataContext)
-    const [isEmpty,setIsEmpty]=useState(false)
     const [isLoading,setIsLoading]=useState(false)
     const [err,setErr]=useState(null)
     const [showResult,setShowResult]=useState(false)
@@ -25,7 +23,6 @@ const NavSearchForm=()=>{
         })
         .then(data=>{
             setResult(data.results.splice(0,5))
-            setIsEmpty(!Boolean(data.results.length))
             setIsLoading(false)
         })
         .catch(err=>{
@@ -48,21 +45,9 @@ const NavSearchForm=()=>{
             <div className="nav-search-result center">
                 {isLoading?<Loading />
                 :err?<div className="error center"><i className="bi bi-emoji-frown"></i>{err}</div>
-                :isEmpty?<div className="no-result center"><i className="bi bi-search"></i>no result</div>:(
+                :!result.length?<div className="no-result center"><i className="bi bi-search"></i>no result</div>:(
                     <div className="search-result-list">
-                        {result.map(item=>{
-                        return(
-                        <Link to={`/games/${item.id}`} className="result-item" key={item.id}>
-                            <img className="result-img" src={item.background_image} alt={item.name} />
-                            <h3 className="result-name">{item.name}</h3>
-                            <div className="platforms">
-                            {item.parent_platforms.map(platform=>(
-                                <i className={platformsIcons[platform.platform.name.toLowerCase()]} key={platform.platform.id}></i>
-                            ))}
-                            </div>
-                            <div className="released center">{item.released}</div>
-                        </Link>
-                        )})}
+                        {result.map(item=><NavSearchResult key={item.id} item={item}/>)}
                     </div>
                 )}
             </div>

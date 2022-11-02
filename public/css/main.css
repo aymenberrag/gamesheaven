@@ -4,9 +4,11 @@
     box-sizing: border-box;
     /* outline: 1px solid greenyellow; */
 }
-*:focus{
+
+*:focus {
     outline: unset;
 }
+
 :root {
     --main-color: #EA4492;
     --light-main-color: #ff92d7;
@@ -27,17 +29,18 @@ a {
 
 .center,
 .bi,
-i
-{
+i {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.space-between{
+
+.space-between {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 body {
     width: 100%;
     height: 100vh;
@@ -47,18 +50,22 @@ body {
     justify-content: center;
     align-items: center;
 }
-.root{
+
+.root {
     width: 100%;
     height: 100%;
 }
-.container{
+
+.container {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
 }
-.no-result,.error{
+
+.no-result,
+.error {
     width: 100%;
     height: 100%;
     display: flex;
@@ -68,11 +75,14 @@ body {
     font-weight: bold;
     padding: 20px;
 }
-.no-result>i,.error>i{
+
+.no-result>i,
+.error>i {
     padding: 5px;
     font-size: 20px;
 }
-.loading{
+
+.loading {
     width: 100%;
     height: 100%;
     display: flex;
@@ -82,70 +92,82 @@ body {
     font-weight: bold;
     color: var(--font-color);
 }
-.loading>.loading-animation{
+
+.loading>.loading-animation {
     position: relative;
     height: 70px;
 }
-.loading>.loading-animation>i{
+
+.loading>.loading-animation>i {
     font-size: 35px;
 }
-.loading>.loading-animation>.up{
+
+.loading>.loading-animation>.up {
     position: absolute;
     top: 0px;
     left: 0px;
-    animation: rotate 3s linear infinite ;
+    animation: rotate 3s linear infinite;
 }
+
 .loading>.loading-animation>.down {
     position: absolute;
     top: 17px;
     left: 28px;
     animation: rotate 3s linear infinite reverse;
 }
-.loading>.loading-animation>div{
+
+.loading>.loading-animation>div {
     text-transform: capitalize;
     position: absolute;
     left: 0px;
     top: 60px;
 }
+
 @keyframes rotate {
-    to{
+    to {
         transform: rotate(360deg);
-    }  
+    }
 }
+
 /* ************************************************* 
 styling the navbar
 
 ****************************************************/
-.nav-bar{
+.nav-bar {
     grid-column: 1 / span 2;
     background-color: var(--bg-color);
     padding: 1px 20px;
     flex-wrap: wrap;
     box-shadow: 0px 0px 12px 2px var(--shadow-color);
 }
-.logo{
+
+.logo {
     color: var(--font-color);
     text-transform: capitalize;
 }
-.side-bar-toggle{
+
+.side-bar-toggle {
     font-size: 28px;
-    padding:0px 5px 0px 0px;
+    padding: 0px 5px 0px 0px;
     cursor: pointer;
     display: none;
 }
-.nav-search{
+
+.nav-search {
     width: 100%;
     max-width: 400px;
     position: relative;
     padding: 10px 0px;
 }
-.nav-search>.nav-search-input{
+
+.nav-search>.nav-search-input {
     width: calc(100% - 30px);
     height: 30px;
     border: none;
     padding: 5px 10px;
 }
-.nav-search>.search-btn{
+
+.nav-search>.search-btn {
     width: 30px;
     height: 30px;
     font-size: 18px;
@@ -153,21 +175,25 @@ styling the navbar
     background-color: var(--accent-color);
     border: none;
 }
-.nav-search>.search-btn:hover{
+
+.nav-search>.search-btn:hover {
     cursor: pointer;
     background-color: var(--light-accent-color);
 }
-.nav-search>.nav-search-result{
+
+.nav-search>.nav-search-result {
     position: absolute;
     width: 100%;
     top: 100%;
     background-color: var(--white-color);
     z-index: 25;
 }
-.nav-search>.nav-search-result>.search-result-list{
+
+.nav-search>.nav-search-result>.search-result-list {
     width: 100%;
 }
-.nav-search>.nav-search-result>.search-result-list>.result-item{
+
+.nav-search>.nav-search-result>.search-result-list>.result-item {
     display: grid;
     grid-template-columns: auto 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -177,64 +203,76 @@ styling the navbar
     padding: 5px 0px;
     color: var(--background-color);
 }
-.nav-search>.nav-search-result>.search-result-list>.result-item:hover{
+
+.nav-search>.nav-search-result>.search-result-list>.result-item:hover {
     background-color: var(--font-color);
 }
-.nav-search>.nav-search-result>.search-result-list>.result-item>.result-img{
+
+.nav-search>.nav-search-result>.search-result-list>.result-item>.result-img {
     width: 70px;
     height: 50px;
     grid-row: 1 /span 2;
 }
-.nav-search>.nav-search-result>.search-result-list>.result-item>.result-name{
+
+.nav-search>.nav-search-result>.search-result-list>.result-item>.result-name {
     grid-column: 2 /span 2;
 }
-.nav-search>.nav-search-result>.search-result-list>.result-item>.result-rating{
+
+.nav-search>.nav-search-result>.search-result-list>.result-item>.result-rating {
     color: #c9ab05;
     display: grid;
     column-gap: 5px;
     grid-template-columns: auto 1fr;
 }
+
 .nav-search>.nav-search-result>.search-result-list>.result-item>.result-rating>span,
-.nav-search>.nav-search-result>.search-result-list>.result-item>.result-metacritic
-{
+.nav-search>.nav-search-result>.search-result-list>.result-item>.result-metacritic {
     color: var(--background-color);
     font-style: normal;
 }
-.nav-search>.nav-search-result>.search-result-list>.result-item>.result-metacritic::before{
+
+.nav-search>.nav-search-result>.search-result-list>.result-item>.result-metacritic::before {
     content: attr(metacritic);
     border: 1px solid var(--accent-color);
     padding: 3px;
     margin-right: 5px;
     border-radius: 3px;
 }
-.nav-search>.nav-search-result>.search-result-list>.result-item>.released{
+
+.nav-search>.nav-search-result>.search-result-list>.result-item>.released {
     color: var(--light-font-color);
 }
-.nav-search>.nav-search-result>.search-result-list>.result-item>.platforms{
+
+.nav-search>.nav-search-result>.search-result-list>.result-item>.platforms {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
-.nav-search>.nav-search-result>.search-result-list>.result-item>.platforms>i{
+
+.nav-search>.nav-search-result>.search-result-list>.result-item>.platforms>i {
     color: var(--light-font-color);
 }
+
 /* ************************************************* 
 styling the sidebar
 
 ****************************************************/
-.side-bar{
+.side-bar {
     min-width: 250px;
     border-right: 1px solid var(--bg-color);
     background-color: var(--bg-color);
 }
-.side-bar>.side-bar-list{
+
+.side-bar>.side-bar-list {
     list-style: none;
     flex-direction: column;
 }
-.side-bar>.side-bar-list>.side-bar-item{
+
+.side-bar>.side-bar-list>.side-bar-item {
     width: 100%;
 }
-.side-bar>.side-bar-list>.side-bar-item>.side-bar-link{
+
+.side-bar>.side-bar-list>.side-bar-item>.side-bar-link {
     display: flex;
     align-items: center;
     color: var(--font-color);
@@ -243,12 +281,15 @@ styling the sidebar
     font-size: 18px;
     position: relative;
 }
+
 .side-bar>.side-bar-list>.side-bar-item>.side-bar-link[active="active"] {
     background-color: var(--main-color);
 }
+
 .side-bar>.side-bar-list>.side-bar-item>.side-bar-link[active="active"]::before {
     background-color: var(--light-main-color);
 }
+
 .side-bar>.side-bar-list>.side-bar-item>.side-bar-link::before {
     content: "";
     position: absolute;
@@ -258,26 +299,32 @@ styling the sidebar
     border-radius: 0px 8px 8px 0px;
     left: 0px;
 }
+
 .side-bar>.side-bar-list>.side-bar-item>.side-bar-link:hover {
     background-color: var(--light-main-color);
 }
+
 .side-bar>.side-bar-list>.side-bar-item>.side-bar-link:hover::before {
     background-color: var(--main-color);
 }
+
 .side-bar>.side-bar-list>.side-bar-item>.side-bar-link>i {
     font-size: 20px;
     padding: 5px;
 }
+
 /* ************************************************* 
 styling the content
 
 ****************************************************/
-.content{
+.content {
     overflow: auto;
 }
-.content::-webkit-scrollbar{
+
+.content::-webkit-scrollbar {
     display: none;
 }
+
 /* ************************************************* 
 meduim devices 992px
 
@@ -286,6 +333,7 @@ meduim devices 992px
     .container {
         grid-template-columns: 1fr;
     }
+
     /* ************************************************* 
     styling the navbar
     
@@ -293,10 +341,12 @@ meduim devices 992px
     .nav-search {
         max-width: unset;
     }
+
     .side-bar-toggle {
         display: flex;
         color: var(--font-color);
     }
+
     /* ************************************************* 
     styling the sidebar
     
@@ -310,10 +360,12 @@ meduim devices 992px
         height: calc(100% - 78px);
         transition: left 0.1s linear;
     }
-    .side-bar[active="active"]{
+
+    .side-bar[active="active"] {
         left: 0px;
     }
 }
+
 /* ************************************************* 
 small devices 672px
 

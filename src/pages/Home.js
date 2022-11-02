@@ -1,6 +1,10 @@
+import SliderSection from "../components/SliderSection"
+import "../style/home.css"
 const Home=()=>{
     return(
-        <h1>home</h1>
+        <div className="home">
+            <SliderSection />
+        </div>
     )
 }
 
