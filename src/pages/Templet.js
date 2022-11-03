@@ -8,8 +8,13 @@ import "../style/templet.css"
 const Templet=()=>{
     const [searchParams,setSearchParams]=useSearchParams()
     const {page}=useParams()
-    const {isLoading,err,data}=useFetch(page,searchParams)
-
+    let params={}
+    if(searchParams){
+        for(let param of searchParams.keys()){
+            params[param]=searchParams.get(param)
+        }
+    }
+    const {isLoading,err,data}=useFetch(page,params)
     return(
         <div className="templet center">
             {

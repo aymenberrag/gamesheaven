@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom"
 import useFetch from "../hooks/useFetch"
 import ImageSlider from "./ImageSlider"
 import Loading from "./loading"
 
-const SliderSection=({page,params,children})=>{
+const CardsSection=({name,page,params,children})=>{
     const {isLoading,err,data}=useFetch(page,params)
     return(
-        <section className="slider-section">
+        <section className="cards-section">
+            <Link className="name" to={`games`}>{name}</Link>
             {
             isLoading?<Loading />
             :err?<div className="error center"><i className="bi bi-emoji-frown"></i>{err}</div>
@@ -17,5 +19,4 @@ const SliderSection=({page,params,children})=>{
 }
 
 
-
-export default SliderSection
+export default CardsSection

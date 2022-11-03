@@ -5,8 +5,8 @@ const useFetch=(page,params=null)=>{
     const [data,setData]=useState(null)
     let q=""
     if(params){
-        for(let param of params.keys()){
-        q+=`&${param}=${params.get(param)}`
+        for(let param in params){
+        q+=`&${param}=${params[param]}`
         }
     }
     useEffect(()=>{
