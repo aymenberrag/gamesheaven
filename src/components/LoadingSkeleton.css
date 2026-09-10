@@ -1,0 +1,31 @@
+.card-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card-skeleton-art {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-md);
+}
+.card-skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+}
+
+.hero-skeleton {
+  width: 100%;
+  height: min(70vh, 640px);
+  border-radius: 0;
+}
+
+.details-skeleton-hero {
+  width: 100%;
+  height: min(60vh, 520px);
+  border-radius: 0;
+}
+.details-skeleton-body {
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}

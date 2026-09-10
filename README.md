@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# GamesHeaven 2.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern game discovery platform powered by the [RAWG](https://rawg.io) API — built with React, Vite and React Router.
 
-## Available Scripts
+## ⚠️ Security note
 
-In the project directory, you can run:
+An earlier version of this repo had a RAWG API key hardcoded in `src/hooks/useFetch.js` and committed in a plaintext `.env` file. Both are public in this repo's git history. **Rotate that key on RAWG's site** — this rebuild never reads it and stores your key only in a local, git-ignored `.env`.
 
-### `npm start`
+## Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React 19 + Vite
+- React Router v6
+- Plain CSS with a small design-token system (`src/index.css`) — no UI framework
+- [lucide-react](https://lucide.dev) for icons
+- RAWG API as the sole data source (no mocked/fake game data)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting started
 
-### `npm test`
+```bash
+npm install
+cp .env.example .env
+# edit .env and add your key from https://rawg.io/apidocs
+npm run dev
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm run build     # production build to dist/
+npm run preview   # preview the production build locally
+```
 
-### `npm run build`
+## Project structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+  components/   # GameCard, GameGrid, GameCarousel, HeroGame, Navbar, MobileNav,
+                # SearchBar, FilterBar, GenreCard, ScreenshotGallery, Rating,
+                # LoadingSkeleton, ErrorState, EmptyState, SectionHeader
+  pages/        # Home, Explore, Search, Genres, Genre, GameDetails, NotFound
+  hooks/        # useGames, useGameDetails, useSearch, useGamesGenres
+  services/     # rawg.js — the only file that talks to the RAWG API
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## RAWG integration
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+All requests go through `src/services/rawg.js`, a thin fetch wrapper that:
 
-### `npm run eject`
+- reads the key from `VITE_RAWG_API_KEY` (never hardcoded)
+- normalizes errors into a `RawgApiError` with a `kind` of `missing-key`, `network`, `not-found`, or `api`, so every page can render an appropriate error state
+- caches GET responses in-memory per session to avoid refetching the same query when a page re-renders or the user navigates back
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Endpoints used: `/games`, `/games/:id`, `/games/:id/screenshots`, `/games/:id/game-series` (used as "related games"), `/genres`, `/genres/:slug`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Known limitations
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- This was built and build-tested without live network access to `api.rawg.io`, so it hasn't been exercised against real RAWG responses yet — verify it end-to-end once you drop in a real key, and watch the browser console for anything RAWG's actual payloads don't match.
+- "Related games" uses RAWG's `game-series` endpoint (same-franchise entries), since RAWG has no general-purpose recommendation endpoint — for games with no series entries, that section is simply omitted.
+- Platform filter values in `FilterBar` are hand-picked common RAWG platform IDs; double-check against `/platforms/lists/parents` if you want the full set.
+- No automated tests included, per the "keep it simple" brief — `npm run build` and manual QA are the current safety net.

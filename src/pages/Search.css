@@ -1,0 +1,11 @@
+.search-page { padding-top: 28px; }
+.search-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 20px;
+}
+.search-page-bar { max-width: 480px; margin-bottom: 28px; }
+.search-count {
+  color: var(--color-text-dim);
+  font-size: 0.85rem;
+  margin: 0 0 16px;
+}

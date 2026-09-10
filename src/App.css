@@ -1,0 +1,12 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.app-main {
+  flex: 1;
+  padding-bottom: 24px;
+}
+@media (max-width: 859px) {
+  .app-main { padding-bottom: 76px; } /* clears the mobile bottom nav */
+}

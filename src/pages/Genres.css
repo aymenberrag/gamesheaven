@@ -1,0 +1,15 @@
+.genres-page { padding-top: 28px; padding-bottom: 40px; }
+.genres-title { font-size: clamp(1.5rem, 3vw, 2rem); }
+.genres-subtitle { color: var(--color-text-dim); margin: 6px 0 24px; }
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.genres-skeleton { aspect-ratio: 16 / 10; }
+@media (min-width: 640px) {
+  .genres-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1000px) {
+  .genres-grid { grid-template-columns: repeat(4, 1fr); }
+}

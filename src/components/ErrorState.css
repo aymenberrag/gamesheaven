@@ -1,0 +1,21 @@
+.error-state,
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 64px 24px;
+  color: var(--color-text-dim);
+  text-align: center;
+}
+
+.error-state svg { color: var(--color-accent); }
+.empty-state svg { color: var(--color-text-faint); }
+
+.error-state p,
+.empty-state p {
+  max-width: 360px;
+  font-size: 0.95rem;
+  margin: 0;
+}

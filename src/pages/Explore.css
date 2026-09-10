@@ -1,0 +1,10 @@
+.explore-page { padding-top: 28px; }
+.explore-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 20px;
+}
+.explore-load-more {
+  display: flex;
+  justify-content: center;
+  padding: 32px 0 12px;
+}

@@ -1,0 +1,25 @@
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.filter-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+}
+.filter-field select {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  outline: none;
+}
+.filter-field select option { background: var(--color-bg-elevated); }
